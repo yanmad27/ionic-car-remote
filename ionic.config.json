@@ -1,0 +1,7 @@
+{
+  "name": "ionic-car-remote",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
