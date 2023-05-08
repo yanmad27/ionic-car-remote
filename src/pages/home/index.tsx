@@ -5,8 +5,8 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import Remote from '../components/Remote';
-import './Home.css';
+import Remote from 'src/components/remote';
+import './index.css';
 
 const Home: React.FC = () => {
   return (

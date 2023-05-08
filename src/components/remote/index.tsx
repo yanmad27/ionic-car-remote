@@ -1,5 +1,5 @@
-import Button from '../elements/button/Button';
-import './Remote.css';
+import Button from 'src/elements/button/Button';
+import './index.css';
 
 interface Props {}
 
