@@ -1,0 +1,13 @@
+.remote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: auto;
+    width: 100%;
+    height: calc(100% - 100px);
+}
+.button {
+    width: 45%;
+}
