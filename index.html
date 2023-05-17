@@ -26,7 +26,7 @@
 	<body>
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
-		<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+		<!-- <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 		<script>
 			const url = 'ws://broker.emqx.io:8083/mqtt';
 			const options = {
@@ -39,12 +39,8 @@
 			const client = mqtt.connect(url, options);
 			client.on('connect', function () {
 				console.log('Connected');
-				client.subscribe('test', function (err) {
-					if (!err) {
-						client.publish('test', 'Hello mqtt');
-					}
-				});
 
+				client.publish('testtopic/1', 'Hello mqtt');
 				client.publish('GsmClientTest/led', '0', { qos: 0, retain: true }, function (error) {
 					if (error) {
 						console.log(error);
@@ -60,6 +56,6 @@
 				console.log(message.toString());
 				client.end();
 			});
-		</script>
+		</script> -->
 	</body>
 </html>

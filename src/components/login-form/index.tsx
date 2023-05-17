@@ -1,13 +1,22 @@
 import { useHistory } from 'react-router-dom';
+import useMqtt from 'src/mqtt';
 import './index.css';
 interface Props {}
 
 const LoginForm = (props: Props) => {
 	const history = useHistory();
+	const { client } = useMqtt();
 
 	const handleClick = () => {
 		console.log('LOG ~ :', 'login');
-		history.push('/home');
+		client.publish('GsmClientTest/led', 'login', { qos: 0, retain: true }, (error: any) => {
+			if (error) {
+				console.log(error);
+				return;
+			}
+			history.push('/home');
+			console.log('Published', 'login');
+		});
 	};
 	return (
 		<div className={'login-form'}>
