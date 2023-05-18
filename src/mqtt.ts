@@ -25,6 +25,9 @@ const useMqtt = (url = initUrl, options = initOptions) => {
 			isFirstConnect.current = false;
 			connect();
 		}
+		return () => {
+			if (client) client.disconnect();
+		};
 	}, []);
 	return {
 		isConnected: !!client,
