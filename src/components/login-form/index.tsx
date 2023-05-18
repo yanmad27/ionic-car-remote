@@ -7,8 +7,7 @@ const LoginForm = (props: Props) => {
 	const history = useHistory();
 	const { client } = useMqtt();
 
-	const handleClick = () => {
-		console.log('LOG ~ :', 'login');
+	const handleLogin = () => {
 		client.publish('GsmClientTest/led', 'login', { qos: 0, retain: true }, (error: any) => {
 			if (error) {
 				console.log(error);
@@ -17,6 +16,11 @@ const LoginForm = (props: Props) => {
 			history.push('/home');
 			console.log('Published', 'login');
 		});
+	};
+	const handleClick = () => {
+		const loginSuccess = Math.random() * 100 > 50;
+		if (loginSuccess) handleLogin();
+		else alert('Login failed');
 	};
 	return (
 		<div className={'login-form'}>

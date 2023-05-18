@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Button from 'src/elements/button/Button';
 import useMqtt from 'src/mqtt';
 import './index.css';
@@ -6,6 +7,15 @@ interface Props {}
 
 const Remote = (props: Props) => {
 	const { client, isConnected } = useMqtt();
+	useEffect(() => {
+		if (!isConnected) return;
+		client.subscribe('test', (err: any) => {
+			if (!err) return;
+			//handle something
+			client.publish('test', 'Hello mqtt');
+		});
+	}, [client]);
+
 	const handleClick = (id: string) => {
 		console.log('LOG ~ :', 'click', id);
 		if (isConnected) {

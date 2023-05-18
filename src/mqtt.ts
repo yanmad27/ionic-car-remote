@@ -1,5 +1,5 @@
 import mqtt from 'mqtt/dist/mqtt';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const initUrl = 'ws://broker.emqx.io:8083/mqtt';
 const initOptions = {
@@ -8,18 +8,23 @@ const initOptions = {
 	clientId: 'emqx_test',
 	username: 'mobile',
 	password: 'mobile488456',
+	reconnectPeriod: 0,
 };
 
 const useMqtt = (url = initUrl, options = initOptions) => {
 	const [client, setClient] = useState<any>();
+	const isFirstConnect = useRef(true);
 	const connect = () => {
-		const client = mqtt.connect(url, options).on('connect', () => {
-			console.log('LOG ~ :', 'MQTT connected');
-		});
-		setClient(client);
+		if (client) return;
+		const newClient = mqtt.connect(url, options);
+		console.log('LOG ~ connect ~ newClient:', newClient);
+		setClient(newClient);
 	};
 	useEffect(() => {
-		connect();
+		if (isFirstConnect.current) {
+			isFirstConnect.current = false;
+			connect();
+		}
 	}, []);
 	return {
 		isConnected: !!client,
