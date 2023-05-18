@@ -1,4 +1,4 @@
-import mqtt from 'mqtt/dist/mqtt';
+import mqtt from 'precompiled-mqtt';
 import { useEffect, useRef, useState } from 'react';
 
 const initUrl = 'ws://broker.emqx.io:8083/mqtt';
