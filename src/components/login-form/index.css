@@ -10,8 +10,13 @@
 }
 .login-form__input input {
     width: 100%;
+    font-size: 16px;
+    line-height: 16px;
+    height: 40px;
+    padding: 8px;
 }
 
 .login-form__button {
     padding: 4px;
+    height: 40px;
 }
